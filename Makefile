@@ -14,7 +14,7 @@ ZSK_ALG= ECDSAP256SHA256
 endif
 #------------------------------------------------------------------------------
 
-.PHONY: checkzone signzone list clean ds
+.PHONY: checkzone signzone list clean cleanall ds
 
 KEYGEN_KSK= ldns-keygen -ka
 KEYGEN_ZSK= ldns-keygen -a
