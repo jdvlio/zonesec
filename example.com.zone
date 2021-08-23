@@ -1,0 +1,38 @@
+example.com.	IN	SOA	ns1 hostmaster.example.com. (
+	2020010100	; Serial number
+	3600		; Refresh
+	300			; Retry
+	604800		; Expire (upper limit)
+	60)			; Minimum TTL
+
+; A records
+example.com.		A		192.0.2.1
+example.com.		AAAA	2001:db8::1
+
+; CNAME records
+mail				CNAME	example.com.
+
+; MX records
+example.com.		MX		10	mail
+
+; TXT records
+;
+; What follows are a minimal set of records to set up the highly annoying DMARC protocol.
+; This example assumes no mail will be sent on behalf of subdomains, only for the parent
+; domain!
+;
+; mail._domainkey	TXT	"v=DKIM1; k=ed25519; p=SOMEPUBLICKEY
+; _dmarc			TXT "v=DMARC1;p=none;sp=reject;rua=mailto:postmaster@example.com"
+; example.com.		TXT "v=spf1 a:mail.example.com ~all"
+; *					TXT "v=spf1 -all"
+
+; OPENPGPKEY records
+;
+; In my opninion, this right here should be the standard way to share OpenPGP keys, namely,
+; via DNSSEC.  The same could be said for CERT records replacing CAs!
+;
+; In this example an OPENPGPKEY record is created for the "*" wildcard user at the domain in
+; question.  The public key in the RDATA section at the end should NOT be quoted - learnt that the
+; hard way.
+;
+; 684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c109._openpgpkey	OPENPGPKEY	SOMEPUBLICKEY
