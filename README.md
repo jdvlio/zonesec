@@ -51,15 +51,15 @@ domain being queried all the way to the root domain.
    are added automatically in the next step.  These need not (should not) be
    added manually at this stage.
 4. In the same directory run the command:
-
-	$ make signzone
-
+   ```
+    $ make signzone
+   ```
    to create a signed zone file for `nsd` to serve.
 
-5. Run the command
-
-	$ make ds
-
+6. Run the command
+   ```
+    $ make ds
+   ```
    in order to retrieve the info needed to pass on to your registrar or parent
    zone.
 
