@@ -19,7 +19,7 @@ endif
 KEYGEN_KSK= ldns-keygen -ka
 KEYGEN_ZSK= ldns-keygen -a
 SIGNZONE= ldns-signzone -n
-LIST_ALG= ldns-keygen -a list
+LIST_ALG= @ldns-keygen -a list
 
 zonefile.signed: zonefile keys
 	${SIGNZONE} zonefile $$(cat keys | tr "\n" " ")
@@ -45,7 +45,7 @@ signzone: zonefile.signed
 	cp -f zonefile.signed ${DOMAIN}.zone.signed
 
 list:
-	${LIST_ALG} | sed -E /'(hmac|^DSA)'/d
+	${LIST_ALG} | sed -E /'(hmac|^DSA|MD5|SHA1)'/d
 
 clean:
 	rm -f ${DOMAIN}.zone.signed
