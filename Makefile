@@ -21,6 +21,9 @@ KEYGEN_ZSK= ldns-keygen -a
 SIGNZONE= ldns-signzone -n
 LIST_ALG= @ldns-keygen -a list
 
+signzone: zonefile.signed
+	cp -f zonefile.signed ${DOMAIN}.zone.signed
+
 zonefile.signed: zonefile keys
 	${SIGNZONE} zonefile $$(cat keys | tr "\n" " ")
 	chmod +x $@
@@ -40,9 +43,6 @@ keys:
 	echo -n "zsk/" >> keys
 	${KEYGEN_ZSK} ${ZSK_ALG} ${DOMAIN} >> keys
 	mv *.key *.private zsk
-
-signzone: zonefile.signed
-	cp -f zonefile.signed ${DOMAIN}.zone.signed
 
 list:
 	${LIST_ALG} | sed -E /'(hmac|^DSA|MD5|SHA1)'/d
