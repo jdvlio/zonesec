@@ -34,6 +34,13 @@ domain's KSK.  In this manner, DNS responses can be validated by essentially
 veryfying that all the necessary signatures are present on the way up from the
 domain being queried all the way to the root domain.
 
+# What is DNSSEC not?
+
+A mechanism for encrypting or anonymizing DNS traffic.  This role belongs to
+DNS over TLS, DNS over HTTPS and Anonymous DNS over HTTPS.  DNSSEC is merely a
+means of verifying that a DNS response is valid/legitimate in the sense that it
+comes from the intended domain.
+
 # Basic usage instructions
 
 1. Simply clone the repository to a location where you wish to keep your zone
