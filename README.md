@@ -1,4 +1,3 @@
-Title:  DNSSEC made easy
 
 [bind9_zonefile]: https://bind9.readthedocs.io/en/latest/reference.html#zone-file
 
